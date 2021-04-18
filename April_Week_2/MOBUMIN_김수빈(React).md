@@ -175,3 +175,11 @@ export default Provider;
 이번 프로젝트가 아니었다면 영원히 state 관리에 대해 손 놓고 있을 뻔 했다.
 
 state 관리는 참 어렵다. 다음 번에는 redux나 mobx중 하나에 대해 공부하고 싶다.
+
+공부한 사이트들
+
+> <https://junilhwang.github.io/TIL/CodeSpitz/Object-Oriented-Javascript/02-MVVM/>
+> <https://velog.io/@k7120792/Model-View-ViewModel-Pattern>
+> <https://black-jin0427.tistory.com/133>
+> <https://xho95.github.io/swiftui/architecture/mvvm/logic/2020/08/05/SwiftUI-MVVM.html>
+> <https://hini7.tistory.com/145>
