@@ -64,33 +64,33 @@ import { usePostState, usePostDispatch } from './PostModel';
 const GetPostContext = createContext(()=>{});
 
 function PostViewModel({children}) {
-	const postDispatch = usePostDispatch();
+ const postDispatch = usePostDispatch();
 
-	useEffect(() => {
-		axios.get('/api/post')
-		.then(res => {
-			postDispatch(res.data.post);
-		})
-	}, [])
+ useEffect(() => {
+  axios.get('/api/post')
+  .then(res => {
+   postDispatch(res.data.post);
+  })
+ }, [])
 
-	const getPost = () => {
-		axios.get('/api/post')
-		.then(res => {
-			postDispatch(res.data.post);
-		})
-	}
+ const getPost = () => {
+  axios.get('/api/post')
+  .then(res => {
+   postDispatch(res.data.post);
+  })
+ }
 
-	return (
-		<GetPostContext.Provider value={getPost}>
-			{children}
-		</GetPostContext.Provider>
-	)
+ return (
+  <GetPostContext.Provider value={getPost}>
+   {children}
+  </GetPostContext.Provider>
+ )
 }
 
 export default PostViewModel;
 export function useGetPost() {
-	const context = useContext(GetPostContext);
-	return context;
+ const context = useContext(GetPostContext);
+ return context;
 }
 ```
 
@@ -109,26 +109,26 @@ const PostContext = React.createContext();
 const PostContextDispatch = React.createContext(() => {});
 
 function PostModel({children}) {
-	const [post, setPost] = useState();
-	return (
-		<PostContext.Provider value={post}>
-			<PostContextDispatch.Provider value={setPost}>
-				{children}
-			</PostContextDispatch.Provider>
-		</PostContext.Provider>
-	)
+ const [post, setPost] = useState();
+ return (
+  <PostContext.Provider value={post}>
+   <PostContextDispatch.Provider value={setPost}>
+    {children}
+   </PostContextDispatch.Provider>
+  </PostContext.Provider>
+ )
 }
 
 export default PostModel
 
 export function usePostState(){
-	const context = useContext(PostContext);
-	return context;
+ const context = useContext(PostContext);
+ return context;
 }
 
 export function usePostDispatch(){
-	const context = useContext(PostContextDispatch);
-	return context;
+ const context = useContext(PostContextDispatch);
+ return context;
 }
 ```
 
@@ -162,13 +162,13 @@ import Routers from '../routes';
 import PostViewModel from './PostViewModel';
 
 function Provider() {
-	return (
-		<PostModel>
-			<PostViewModel>
-				<Routers />
-			</PostViewModel>
-		</PostModel>
-	)
+ return (
+  <PostModel>
+   <PostViewModel>
+    <Routers />
+   </PostViewModel>
+  </PostModel>
+ )
 }
 
 export default Provider;
