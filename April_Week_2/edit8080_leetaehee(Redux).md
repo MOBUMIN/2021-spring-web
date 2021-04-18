@@ -15,7 +15,8 @@ Redux를 사용하면 상태 관리를 외부의 파일에서 수행하기 때�
 
 ## 1-1. redux, react-redux 설치
 
-React에서 Redux를 사용하기 위해서는 `redux` 라이브러리와 React와 Redux를 연결하는 `react-redux` 라이브러리의 설치가 필요합니다.
+React에서 Redux를 사용하기 위해서는 `redux` 라이브러리와 React와 Redux를 연결하는 `react-redux`
+라이브러리의 설치가 필요합니다.
 
 ```bash
 
@@ -75,7 +76,8 @@ export default todoReducer;
 
 ```
 
-> Redux에서 Error를 throw하여 처리하지 않기 때문에 초기 상태 설정을 위해 state의 default 설정이 필요하다. (state=initialState)
+> Redux에서 Error를 throw하여 처리하지 않기 때문에
+> 초기 상태 설정을 위해 state의 default 설정이 필요하다. (state=initialState)
 
 &lt;여러 개의 Reducer 결합&gt;
 
@@ -177,7 +179,8 @@ ReactDOM.render(
 
 ## 1-4. Redux 모듈 사용하기
 
-Redux 모듈의 Store에 저장한 상태를 조회하기 위해서는 `react-redux` 라이브러리의 `useSelector` 함수를 사용할 수 있습니다.
+Redux 모듈의 Store에 저장한 상태를 조회하기 위해서는 `react-redux` 라이브러리의
+`useSelector` 함수를 사용할 수 있습니다.
 또한 `useDispatch` 함수를 통해 Redux Store의 dispatch를 함수에서 사용할 수 있습니다.
 
 &lt;Counter.js&gt;
@@ -229,7 +232,8 @@ export default CounterContainer;
 
 # 2. Redux 미들웨어
 
-Redux 미들웨어는 Action을 Dispatch한 후 Reducer에서 해당 Action 객체의 타입과 맞는 동작을 수행하기 이전에 추가적인 작업을 할 수 있도록 하는 기능입니다.
+Redux 미들웨어는 Action을 Dispatch한 후 Reducer에서 해당 Action 객체의 타입과 맞는 동작을 수행하기
+이전에 추가적인 작업을 할 수 있도록 하는 기능입니다.
 미들웨어를 사용하면 Reducer 동작에 필요한 외부 API를 연동하거나 비동기 작업 등을 처리할 수 있습니다.
 
 ## 2-1. Redux 미들웨어 사용 및 적용하기
