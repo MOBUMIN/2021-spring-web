@@ -97,9 +97,41 @@ test {
 }
 ```
 # 2. Testcode
-## 테스트코드를 왜 작성해야 하나요?
-## Spring boot 테스트코드는 어떻게 작성해야 하나요?
-## Lombok으로 자바를 더 편하게 써봅시다!
+
+## 2.1. 테스트코드를 왜 작성해야 하나요?
+요즘의 개발에서 테스트는 필수적입니다. 이번주에 저는 Junit4를 사용해 테스트하는 방법을 익혔습니다.
+* 단위 테스트는 개발단계 초기에 문제를 발견하게 도와줍니다.
+* 단위 테스트를 하면 개발자가 나중에 코드를 리팬토링하거나 라이브러리 업그레이드 등에서 기존 기능이 올바르게 작동하는지 확인할 수 있습니다.
+* 단위 테스트는 기능에 대한 불확실성을 감소시킬 수 있습니다.
+## 2.2. Spring boot 테스트코드는 어떻게 작성해야 하나요?
+### 2.2.1. Given-when-then
+테스트 코드는 일반적으로 given-when-then 형식으로 작성합니다. Given 단계에서 테스트를 위해 준비하고 When 단계에서 실제로 액션하는 테스트를 실행한 후 Then 단계에서 테스트를 검증합니다.
+### 2.2.2. Given-when-then 연습
+이번 주에 실습했던 게시글이 제대로 저장되었는지 확인하고 불러오는 코드입니다.
+```
+// given
+String title = "테스트 게시글";
+String content = "테스트 본문";
+
+postsRepository.save(Posts.builder()
+    .title(title)
+    .content(content)
+    .author("ei654028@gmail.com")
+    .build());
+
+
+// when
+List<Posts> postsList = postsRepository.findAll();
+
+
+//then
+Posts posts = postsList.get(0);
+assertThat(posts.getTitle()).isEqualTo(title);
+assertThat(posts.getContent()).isEqualTo(content);
+```
+
+## 2.3. Lombok으로 자바를 더 편하게 써봅시다!
+Lombok은 자바에서 DTO, Domain 등을 만들 때 반복적으로 만들어야 하는 멤버 필드 생성자 코드를 줄여 주는 라이브러리 입니다. Getter, Setter, ToString 등 다양한 코드를 자동완성 해 줍니다. lombok을 적용하면 코드의 가독성이 높아져 일명 코드 다이어트로 불리기도 합니다.
 
 # 3. Java Persistence Api
 ## JPA를 왜 쓰나요?
@@ -158,16 +190,7 @@ html 형태로 코드를 작성해 동적으로 DOM을 그리게 해주는 역�
 {{>layout/footer}}
 ```
 
-0
 
-볼드, 밑줄, 이미지 등
-서버사이드 랜더링 vs 프론트 랜더링
-Q. 서버 측에서는 API만 제공하고 클라이언트에서 동적으로 웹 페이지를 구성하면 되지 않나?
-A. https://www.slipp.net/questions/368#answer-1312 참고
-(즉, 서버는 API만 제공하고 모든 웹 페이지 구성은 클라이언트가 처리한다.)
-Q. 굳이 서버단 렌더링까지 할 필요가 있느냐, 렌더링은 클라이언트에서만 하도록 하면 뷰단 로직이 분산되지 않고 좋지 않나?
-(위와 같은 의미의 질문)
-A. https://www.clien.net/service/board/park/5699595 참고
 
 
 1
@@ -184,6 +207,13 @@ https://webfirewood.tistory.com/129
 https://docs.gradle.org/current/userguide/core_dependency_management.html
 https://limdevbasic.tistory.com/12
 https://docs.gradle.org/current/userguide/java_testing.html
+
+2
+https://brunch.co.kr/@springboot/418
+https://martinfowler.com/bliki/GivenWhenThen.html
+https://woowabros.github.io/study/2018/03/01/spock-test.html
+https://brunch.co.kr/@springboot/292
+https://goddaehee.tistory.com/95
 
 4
 https://gmlwjd9405.github.io/2018/12/21/template-engine.html
