@@ -1,0 +1,127 @@
+# 1. Hello Backend!
+## 1.1. 왜 프레임워크를 쓰나요?
+소프트웨어적 관점에서 프레임워크는 애플리케이션을 만들기 위한 큰 틀과도 같습니다. 앱의 골격을 프레임워크로부터 빌려쓴다면 개발자는 구현해야 하는 핵심 로직에만 집중할 수 있습니다. 
+> 프레임워크와 함께라면, 레스토랑의 셰프에게는 재료 수급이나 매장 관리에 신경쓸 필요 없이 요리만 할 수 있는 환경이 주어집니다.
+
+> 프레임워크와 함께라면, 개발자에게는 XML 설정과 WAS 설치 등에 신경쓸 필요 없이 로직을 짜는 것에만 집중할 수 있는 환경이 주어집니다.
+
+## 1.2. 프레임워크는 어떻게 구성되나요?
+프레임워크는 디자인 패턴과 라이브러리를 모아 프로그램 형태로 만든 것입니다. 
+> 프레임워크 = 디자인패턴 + 라이브러리
+### 1.2.1. 디자인 패턴
+디자인 패턴은 객체 지향 설계를 위한 정형화된 설계 방법입니다. 객체지향 언어로 넘어오며 개발자가 맞닥뜨릴 수 있는 문제를 피하기 위해 무엇을 객체로 정할지, 객체 간 관계를 어떻게 정할지가 중요해졌습니다. 디자인 패턴은 코드를 처음 보는 사람도 설계의 목적, 용도, 구현 방법을 쉽게 이해하고 개발할 수 있도록 돕습니다.
+### 1.2.2. 라이브러리
+라이브러리는 프로그램의 구성요소로 공통으로 사용될 수 있는 특정 기능들을 모듈화한 것입니다. 중복된 코드를 반복해서 작성하지 않도록 하기 위해 재사용할 수 있도록 만들어둘 수 있습니다.
+
+## 1.3. Spring과 IntelliJ
+### 1.3.1. Spring의 장점
+* 복잡하지 않습니다.
+    * 애플리케이션 기본 설정이 간편합니다.
+* 프로젝트 전체 구조 설계에 유용합니다.
+    * 스프링은 웹, 데이터베이스 등 어느 한 분야에만 집중하지 않고 전체를 설계하는 용도로 사용할 수 있습니다.
+* 다른 프레임워크를 포용합니다.
+    * 다른 프레임워크와의 상생을 추구하므로 최소한의 수정으로 여러 종류의 프레임워크를 혼용해서 쓸 수 있습니다.
+* 개발 생산성이 좋습니다.
+    * XML 설정을 이용해 유지보수가 용이하고 여러 플러그인을 지원해 새로운 개발 도구에 대한 별도의 적응 없이도 개발이 가능합니다.
+
+그 중 Spring Boot는 스프링의 프로젝트 중 하나로, 설정이 최소화되어 간단히 실행할 수 있다는 장점이 있습니다. 버전관리가 쉽고 JUnit 등 테스트 관련 라이브러리들이 포함되어 있어 테스트 케이스를 쉽게 작성할 수 있습니다. JAR 파일로 패키징해서 사용할 수 있어 빠르게 어플리케이션을 개발하는 데에도 효과적입니다.
+
+~~저같은 백린이는 스프링부트 허들이 제일 낮아서 사용합니다...~~
+
+### 1.3.2. IntelliJ Idea
+IntelliJ는 대표적인 자바 웹 개발도구입니다. 
+
+Eclipse vs IntelliJ
+* 추천 기능이 강력합니다.
+* 리팩토링과 디버깅 기능이 다양합니다.
+* 깃 자유도가 높습니다.
+* 파일을 비롯한 자원 검색이 빠릅니다.
+* 자바와 스프링부트 버전업에 맞추어 업데이트가 빠릅니다.
+* 대학생이시면 젯브레인 홈페이지에 가입하고 웹메일 인증 후 ultimate 버전을 무료로 사용하실 수 있습니다.
+
+## 1.4. Gradle
+Gradle은 Groovy 기반의 오픈소스 빌드 도구입니다. Ant의 유연성과 Marven의 편리성을 조합해 XML에 대한 이슈도 Groovy를 사용해 해결할 수 있습니다.
+
+### 1.4.1. Gradle Build Lifecycle
+1. Initialization: 빌드 대상 프로젝트를 결정하고 각각에 대한 Project 객체 생성 후 setting.gradle 파일에서 프로젝트를 구성
+2. Configuration: 빌드 대상이 되는 모든 프로젝트의 빌드 스크립트를 실행
+3. Execution: 구성 단계에서 생성/설정된 프로젝트의 task 중 실행 대상을 결정
+
+### 1.4.2. Gradle 사용법
+build.gradle 파일에 빌드정보를 정의해서 프로젝트에서 사용하는 환경설정, 빌드방법, 라이브러리 정보 등을 기술함으로써 빌드 및 프로젝트의 관리환경을 구성합니다.
+#### __Plugin__
+플러그인을 적용함으로써 프로젝트를 확장할 수 있습니다. 플러그인은 재사용을 촉진하고 더 높은 수준의 모듈화를 허용합니다. 기존에는 apply plugin을 사용했지만 [공식 홈페이지](https://docs.gradle.org/current/userguide/plugins.html#sec:using_plugins)에서는 Gradle이 더 안전하게 실행할 수 있도록 plugins를 사용하는 것을 지향합니다.
+1. 기존 방법
+```
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+```
+2. 개선 방법
+```
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+```
+#### __Repository__
+![의존성 관리 모식도](https://docs.gradle.org/current/userguide/img/dependency-management-resolution.png)
+
+repository는 소프트웨어를 등록하서 관리하는 장소를 가리킵니다. 로컬 환경이나 네트워크에 라이브러리를 공개하고 그 주소를 저장소로 등록하면 저장소에 있는 라이브러리를 gradle이 취득해 이용할 수 있습니다. 만약 중앙저장소에 공개되지 않거나 사내에서만 사용하는 라이브러리가 있을 경우 로컬 저장소를 이용하면 됩니다. 예를 들어 아래는 mavenCentral()과 jcenter()를 사용해 두 저장소를 이용하는 코드입니다.
+```
+repositories {
+    mavenCentral()
+    jcenter()
+}
+```
+
+#### __Dependency__
+dependency는 의존성에 관한 설정을 관리하는 프로퍼티입니다. 필요한 라이브러리를 기술하면 해당 라이브러리를 참조할 수 있습니다. 기본적으로 group, name, version 순으로 의존성을 기술하지만 group:name:version으로 축약해 쓸 수 있습니다. 만약 ext 블록으로 버전을 적어두면 dependency에 version 정보를 생략해도 자동으로 적용됩니다.
+```
+dependencies {
+    // 기본형
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+    // 축약형
+    compile 'org.hibernate:hibernate-core:3.6.7.Final'
+}
+
+```
+#### __Test__
+gradle을 통해서 테스트 또한 간편하게 할 수 있습니다. gradle은 test시에 특정 테스트만 진행할 수 있습니다. 아래는 jUnit을 사용하기 위한 코드입니다. ~~절대 지쳐서가 아니라~~ 테스트 코드에 대해서는 다음 장에서 더 공부해보려 합니다.
+```
+test {
+    useJUnitPlatform()
+}
+```
+# 2. Testcode
+## 테스트코드를 왜 작성해야 하나요?
+## Spring boot 테스트코드는 어떻게 작성해야 하나요?
+## Lombok으로 자바를 더 편하게 써봅시다!
+
+# 3. Java Persistence Api
+## JPA를 왜 쓰나요?
+## 프로젝트에 JAP를 적용해봅시다!
+## 테스트 코드로 JPA가 잘 돌아가는지 확인해볼까요?
+## 등록/수정/조회 API를 만들어봅시다!
+
+# 4. Template Engine
+## 어떤 템플릿 엔진을 써야하나요?
+## Mustache를 적용해봅시다!
+
+1
+https://elevatingcodingclub.tistory.com/25
+https://futurecreator.github.io/2016/06/18/spring-boot-get-started/
+https://mckdh.tistory.com/entry/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98-%ED%83%84%EC%83%9D-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC
+https://freestrokes.tistory.com/79
+https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.6:dep:build_tool:gradle
+https://madplay.github.io/post/what-is-gradle
+https://willbesoon.tistory.com/93
+https://docs.gradle.org/current/userguide/plugins.html
+https://doughman.tistory.com/19
+https://webfirewood.tistory.com/129
+https://docs.gradle.org/current/userguide/core_dependency_management.html
+https://limdevbasic.tistory.com/12
+https://docs.gradle.org/current/userguide/java_testing.html
