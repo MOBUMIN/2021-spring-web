@@ -12,14 +12,14 @@
   - Implement dragging elements to wherever I want using event handlers such as
 `onpointerdown`, `onpointerup`, `onpointerdown`.
   - Implement bringing specific element to the front using event handler `ondblclick`.
-- [r4k0nb4k0n/typing-game](https://github.com/r4k0nb4k0n/terrarium) deployed to [r4k0nb4k0n.github.io/typing-game](https://r4k0nb4k0n.github.io/typing-game)
+- [r4k0nb4k0n/typing-game](https://github.com/r4k0nb4k0n/typing-game) deployed to [r4k0nb4k0n.github.io/typing-game](https://r4k0nb4k0n.github.io/typing-game)
   - A project to sharpen the most underrated skills of the developer, typing.
   - Event-driven programming.
   - Implement playing 3 videos on background using `<video>` element and DOM manipulation.
 
 ## 🧗 What I struggled with
 
-- [r4k0nb4k0n/typing-game](https://github.com/r4k0nb4k0n/terrarium) deployed to [r4k0nb4k0n.github.io/typing-game](https://r4k0nb4k0n.github.io/typing-game)
+- [r4k0nb4k0n/typing-game](https://github.com/r4k0nb4k0n/typing-game) deployed to [r4k0nb4k0n.github.io/typing-game](https://r4k0nb4k0n.github.io/typing-game)
   - Flickering
     - Cause
       - I changed the `src` attribute of `<video>` element manually by
