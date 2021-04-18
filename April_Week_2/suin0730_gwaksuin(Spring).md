@@ -40,7 +40,7 @@ Eclipse vs IntelliJ
 * 대학생이시면 젯브레인 홈페이지에 가입하고 웹메일 인증 후 ultimate 버전을 무료로 사용하실 수 있습니다.
 
 ## 1.4. Gradle
-Gradle은 Groovy 기반의 오픈소스 빌드 도구입니다. Ant의 유연성과 Marven의 편리성을 조합해 XML에 대한 이슈도 Groovy를 사용해 해결할 수 있습니다.
+Gradle은 Groovy 기반의 오픈소스 빌드 도구입니다. Ant의 유연성과 Maven의 편리성을 조합해 XML에 대한 이슈도 Groovy를 사용해 해결할 수 있습니다. gradle은 Maven에서 종종 발생했던 라이브러리 버전 문제, 충돌 문제 등을 해결합니다.
 
 ### 1.4.1. Gradle Build Lifecycle
 1. Initialization: 빌드 대상 프로젝트를 결정하고 각각에 대한 Project 객체 생성 후 setting.gradle 파일에서 프로젝트를 구성
@@ -90,7 +90,7 @@ dependencies {
 
 ```
 #### __Test__
-gradle을 통해서 테스트 또한 간편하게 할 수 있습니다. gradle은 test시에 특정 테스트만 진행할 수 있습니다. 아래는 jUnit을 사용하기 위한 코드입니다. ~~절대 지쳐서가 아니라~~ 테스트 코드에 대해서는 다음 장에서 더 공부해보려 합니다.
+gradle을 통해서 테스트 또한 간편하게 할 수 있습니다. gradle은 test시에 특정 테스트만 진행할 수 있습니다. 아래는 jUnit을 사용하기 위한 코드입니다. ~~절대 글쓰는게 지쳐서가 아니라~~ 테스트 코드에 대해서는 다음 장에서 더 공부해보려 합니다.
 ```
 test {
     useJUnitPlatform()
@@ -108,8 +108,67 @@ test {
 ## 등록/수정/조회 API를 만들어봅시다!
 
 # 4. Template Engine
-## 어떤 템플릿 엔진을 써야하나요?
-## Mustache를 적용해봅시다!
+템플릿 엔진이란 템플릿 양식과 특정 데이터 모델에 따른 입력 자료를 합성해 결과 문서를 출력하는 소프트웨어를 말합니다. 그 중 웹 템플릿 엔진이란 웹 템플릿과 컨텐츠 정보를 처리하기 위해 설계된 소프트웨어입니다. 대부분의 템플릿 엔진은 html보다 간단한 문법을 사용하고 재사용성이 높습니다. 또한 하나의 템플릿으로 여러 페이지를 렌더링할 수 있습니다. 
+## 4.1. Server Side vs Client Side
+### 4.1.1. Server Side Template Engine
+서버 사이드 템플릿 엔진은 DB 혹은 API에서 가져온 데이터를 미리 정의된 템플릿에 넣어 서버에서 html을 그립니다. html 코드에서 고정적으로 사용되는 부분은 템플릿으로 만들어두고 동적으로 생성되는 부분만 템플릿에 소스 코드를 끼워넣는 방식으로 동작합니다. 
+### 4.1.2. Client Side Template Engine
+html 형태로 코드를 작성해 동적으로 DOM을 그리게 해주는 역할을 합니다. 클라이언트에서는 공통적인 프레임을 미리 템플릿으로 만들고 서버에서 필요한 데이터를 받아 적절한 위치에 replace합니다.
+## 4.2. Mustache
+저는 Spring Boot 프로젝트에 Mustache라는 마크업 언어를 사용할 것입니다. "스프링 부트와 AWS로 혼자 구현하는 웹서비스"에서는 mustache를 사용하는 이유를 다음과 같이 소개합니다.
+* mustache는 수많은 언어를 지원하는 가장 심플한 템플릿 엔진입니다.
+* 문법이 다른 템플릿 엔진보다 심플합니다.
+* 로직 코드를 사용할 수 없어 View와 서버의 역할이 명확하게 분리됩니다. 만약 템플릿 엔진에서 너무 많은 기능을 제공하면 api와 템플릿 엔진, js가 서로 로직을 나눠 갖게 되어 유지보수가 어려워진다는 단점이 있습니다.
+* mustach.js와 mustache.java를 둘 다 지원해, 하나의 문법으로 클라이언트/서버 템플릿으로 모두 사용 가능합니다.
+## 4.3. Mustache를 사용해보아요!
+반복적으로 사용되는 코드는 별도의 파일로 분리하여 필요한 곳에서 가져다쓰도록 레이아웃 방식으로 추가합니다. 저는 책을 따라 header와 footer 파일을 만들었습니다.
+
+* css는 화면을 그리는 역할이므로 먼저 로딩시키기 위해 header에서 부릅니다.
+* js는 용량이 클수록 로딩이 느려 body 부분의 실행이 늦어지기 때문에 footer에 둡니다.
+* bootstrap.js은 jquery.js에 의존하기 때문에 footer 내에서도 아래에 위치합니다.
+
+```
+//header.mustache
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>스프링부트 웹서비스</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+```
+```
+//footer.mustache
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--index.js 추가-->
+<script src="/js/app/index.js"></script>
+</body>
+</html>
+```
+이제 mustache 파일을 이용해 html을 구성해봅시다. 코드의 재사용성이 높아졌습니다.
+```
+{{>layout/header}}
+
+<h1> 안녕하세요 여러분! </h1>
+
+{{>layout/footer}}
+```
+
+0
+
+볼드, 밑줄, 이미지 등
+서버사이드 랜더링 vs 프론트 랜더링
+Q. 서버 측에서는 API만 제공하고 클라이언트에서 동적으로 웹 페이지를 구성하면 되지 않나?
+A. https://www.slipp.net/questions/368#answer-1312 참고
+(즉, 서버는 API만 제공하고 모든 웹 페이지 구성은 클라이언트가 처리한다.)
+Q. 굳이 서버단 렌더링까지 할 필요가 있느냐, 렌더링은 클라이언트에서만 하도록 하면 뷰단 로직이 분산되지 않고 좋지 않나?
+(위와 같은 의미의 질문)
+A. https://www.clien.net/service/board/park/5699595 참고
+
 
 1
 https://elevatingcodingclub.tistory.com/25
@@ -125,3 +184,7 @@ https://webfirewood.tistory.com/129
 https://docs.gradle.org/current/userguide/core_dependency_management.html
 https://limdevbasic.tistory.com/12
 https://docs.gradle.org/current/userguide/java_testing.html
+
+4
+https://gmlwjd9405.github.io/2018/12/21/template-engine.html
+https://insight-bgh.tistory.com/252
