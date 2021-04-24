@@ -266,6 +266,153 @@ useEffect(()=>{
 - call : Promise 함수의 완료를 대기
 - takeEvery : 특정 액션 타입에 대해 dispatch되는 모든 액션을 처리(헬퍼 함수)
 
+# 3. 라우팅
+
+React에서 라우팅을 구성하는 이유는 React의 장점인 SPA(Single Page Application)를 구현하기 위해서입니다.
+기존 웹페이지는 SSR(Server Side Rendering)을 위해 백엔드에서 라우팅을 수행하였다면 React로 구성된 웹페이지는
+CSR(Client Side Rendering)로 구성할 수 있기 때문에 구성을 위해서는 React 내에 렌더링할 페이지를 지정하는
+라우팅 동작 코드를 작성해주어야 합니다. 라우팅 동작 코드 작성에 대한 내용은 다음 [자료](https://medium.com/@han7096/react-router-v4-%EC%A0%95%EB%A6%AC-e9931b63dcae)를 참고하세요.
+
+아래의 내용에서 웹 페이지의 경로 이동 방법 중 하나인 `react-router-dom`의 history 객체의 사용법에 대해
+알아보고 redux-thunk와 redux-saga에서 history 객체를 사용한 라우팅 방법을 알아보겠습니다.
+
+## 3-1. history 객체 (react-router-dom)
+
+history 객체는 [window.history](https://developer.mozilla.org/ko/docs/Web/API/Window/history)와 유사한 동작을 수행하는 객체입니다.
+history 객체를 사용하면 원하는 경로로 이동하거나 이전 페이지로 이동하는 것과 같은 동작을 수행할 수 있습니다.
+window.history와의 차이로는 window.history는 페이지 전체를 새로 reload 하지만
+history 객체는 SPA를 위해 페이지 전체를 reload 하지 않고 필요한 부분만 렌더링한다는 차이점이 있습니다.
+
+history 객체는 경로 이동을 위해 `push()`, `go()`, `goBack()`, `goForward()`와 같은 메소드를 사용할
+수 있습니다.
+history 객체의 자세한 속성과 메소드는 다음 [자료](https://reactrouter.com/web/api/history)를 참고하세요.
+
+
+&lt;history 객체에서 자주 사용하는 메소드&gt;
+- push(path, [state]) : 지정한 경로로 이동
+- go(n) : n 위치로 history 스택에서 포인터 이동
+- goBack() : 뒤로 이동 = go(-1)
+- goForward() : 앞으로 이동 = go(1)
+
+``` JavaScript
+
+function HistoryTest({ history }) {
+  const goBack = () => {
+    history.goBack();
+  };
+  const goForward = () => {
+    history.goForward();
+  };
+  const goHome = () => {
+    history.push("/");
+  }
+  return (
+    <>
+      <button onClick={goBack}>뒤로 이동</button>
+      <button onClick={goForward}>앞으로 이동</button>
+      <button onClick={goHome}>홈으로 이동</button>
+    </>
+  )
+}
+export default HistoryTest;
+
+```
+
+## 3-2 redux-thunk 와 redux-saga에서 라우터 연동
+
+두 미들웨어에서 history 객체를 사용하기 위해서는 history 모듈의 `createBrowserHistory()` 함수를 통해
+history 객체를 생성할 수 있습니다. 이후 Router 컴포넌트에 생성된 history 객체를 전달합니다.
+
+### redux-thunk
+
+redux-thunk에서는 redux-thunk의 `.withExtraArgument()` 메소드를 통해 생성된 history 객체를 전달할 수 있습니다.
+`.withExtraArgument()` 메소드를 사용하면 액션 함수를 선언할 때 3번째 인자로 전달받은 history 객체를 
+사용할 수 있습니다.
+
+```JavaScript
+
+import { createStore, applyMiddleware } from 'redux';
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import rootReducer from './modules';
+import ReduxThunk from 'redux-thunk';
+import { createBrowserHistory } from 'history';
+
+const customHistory = createBrowserHistory();
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(ReduxThunk.withExtraArgument({ history: customHistory }))
+);
+
+ReactDOM.render(
+  <Router history={customHistory}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
+  document.getElementById('root')
+);
+
+// 액션 함수 선언 (3번째 인자에 history 전달)
+export const goToHome = () => (dispatch, getState, { history }) => {
+  history.push('/');
+};
+
+```
+
+### redux-saga
+
+redux-saga에서는 `createSagaMiddleware()` 함수로 생성된 saga 미들웨어에 context를 설정할 수 있습니다.
+context를 통해 history 객체를 전달하면 `getContext()` 함수를 통해 전달받은 history 객체를 사용할 수 있습니다.
+
+```JavaScript
+
+import { createStore, applyMiddleware } from 'redux';
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import rootReducer, { rootSaga } from './modules';
+import createSagaMiddleware from 'redux-saga';
+import { createBrowserHistory } from 'history';
+
+const customHistory = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history: customHistory
+  }
+});
+
+const store = createStore(
+  rootReducer, 
+  applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(
+  <Router history={customHistory}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
+  document.getElementById('root')
+);
+
+// 액션 객체와 관련 saga 함수 선언 (getContext로 history 접근)
+import { takeEvery, getContext } from 'redux-saga/effects';
+
+export const goToHome = () => ({ type: GO_TO_HOME });
+
+function* goToHomeSaga() {
+  const history = yield getContext('history');
+  history.push('/');
+}
+
+export function* watchGoToHomeSaga() {
+  yield takeEvery(GO_TO_HOME, goToHomeSaga);
+}
+
+```
+
 &lt;참고자료&gt;
 - [redux-thunk와 redux-saga에 대하여](https://react.vlpt.us/redux-middleware/10-redux-saga.html)
 - [Redux-saga에 대하여](https://medium.com/@han7096/redux-saga%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-5e39b72380af)
@@ -275,3 +422,7 @@ useEffect(()=>{
 - [JS의 Async/Await가 Promise를 사라지게 만들 수 있는 이유](https://medium.com/@constell99/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-async-await-%EA%B0%80-promises%EB%A5%BC-%EC%82%AC%EB%9D%BC%EC%A7%80%EA%B2%8C-%EB%A7%8C%EB%93%A4-%EC%88%98-%EC%9E%88%EB%8A%94-6%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%9C%A0-c5fe0add656c)
 - [redux-thunk로 프로미스 다루기](https://react.vlpt.us/redux-middleware/05-redux-thunk-with-promise.html)
 - [redux-saga로 프로미스 다루기](https://react.vlpt.us/redux-middleware/11-redux-saga-with-promise.html)
+- [React Router V4 정리](https://medium.com/@han7096/react-router-v4-%EC%A0%95%EB%A6%AC-e9931b63dcae)
+- [history 객체 구성](https://reactrouter.com/web/api/history)
+- [redux-thunk에서 라우터 연동하기](https://react.vlpt.us/redux-middleware/07-router-with-thunk.html)
+- [redux-saga에서 라우터 연동하기](https://react.vlpt.us/redux-middleware/12-redux-saga-with-router.html)
