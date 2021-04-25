@@ -1,11 +1,5 @@
 # Study with Me :)
 
-이번 주에는 "스프링 부트와 AWS로 혼자 구현하는 웹 서비스"를 읽으며
-게시판 기능을 하는 Spring Boot 기반 웹 어플리케이션을 구현하는 실습을 했습니다.
-특히 제가 평소에 자주 애용하는 OAuth 기능을 접목시켰는데, 오류가 많이 떠서 고생했지만
-제 손으로 무언가를 만들 수 있었던 즐거운 경험이었습니다!
-다만 실습 위주로 진행하다보니 개념을 얼마나 깊게 알고 진행해야 할지 고민이 되네요...
-
 * [6. 게시판 만들기](#6-게시판-만들기)
   * [6.1. IndexController](#61-indexcontroller)
   * [6.2. Contents Delivery Network](#62-contents-delivery-network)
