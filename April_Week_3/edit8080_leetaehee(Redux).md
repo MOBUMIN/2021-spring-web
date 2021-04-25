@@ -1,7 +1,3 @@
-# 0. 개요
-
-이번 주는 이전에 학습한 Redux Middleware의 또다른 종류인 `redux-saga`에 대해 학습하고
-`redux-thunk`와 `redux-saga`의 사용법에 대해 구체적으로 알아보는 시간을 가졌습니다.
 
 # 1. redux-saga
 
