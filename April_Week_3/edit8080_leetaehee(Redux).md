@@ -1,3 +1,5 @@
+# 0. 개요
+
 이번 주는 이전에 학습한 Redux Middleware의 또다른 종류인 `redux-saga`에 대해 학습하고
 `redux-thunk`와 `redux-saga`의 사용법에 대해 구체적으로 알아보는 시간을 가졌습니다.
 
@@ -247,19 +249,19 @@ function* fetchDataSaga(action) {
 
     try {
         // 2) Api의 fetchUser 함수를 url 인자를 통해 호출 => 유저 정보 fetch
-        const data = yield call(Api.fetchUser, url) 
+        const data = yield call(Api.fetchUser, url)
 
         // 3) FETCH_SUCCEEDED 리듀서 동작 수행 (state)
-        yield put({ type: "FETCH_SUCCEEDED", payload:data }) 
+        yield put({ type: "FETCH_SUCCEEDED", payload:data })
     } catch (error) {
         // 4) 에러 발생 시 FETCH_FAILED 리듀서 동작 수행 (state)
-        yield put({ type: "FETCH_FAILED", payload:error }) 
+        yield put({ type: "FETCH_FAILED", payload:error })
     }
 }
 
 export default function* watchFetchDataSaga() {
   // 1) FETCH_REQUESTED 리듀서 동작 수행 이후 fetchData 함수 실행 (state)
-  yield takeEvery("FETCH_REQUESTED", fetchData); 
+  yield takeEvery("FETCH_REQUESTED", fetchData);
 }
 
 // 사용 시
@@ -282,14 +284,14 @@ useEffect(()=>{
 React에서 라우팅을 구성하는 이유는 React의 장점인 SPA(Single Page Application)를 구현하기 위해서입니다.
 기존 웹페이지는 SSR(Server Side Rendering)을 위해 백엔드에서 라우팅을 수행하였다면 React로 구성된 웹페이지는
 CSR(Client Side Rendering)로 구성할 수 있기 때문에 구성을 위해서는 React 내에 렌더링할 페이지를 지정하는
-라우팅 동작 코드를 작성해주어야 합니다. 라우팅 동작 코드 작성에 대한 내용은 다음 [자료](https://medium.com/@han7096/react-router-v4-%EC%A0%95%EB%A6%AC-e9931b63dcae)를 참고하세요.
+라우팅 동작 코드를 작성해주어야 합니다.
 
 아래의 내용에서 웹 페이지의 경로 이동 방법 중 하나인 `react-router-dom`의 history 객체의 사용법에 대해
 알아보고 redux-thunk와 redux-saga에서 history 객체를 사용한 라우팅 방법을 알아보겠습니다.
 
 ## 3-1. history 객체 (react-router-dom)
 
-history 객체는 [window.history](https://developer.mozilla.org/ko/docs/Web/API/Window/history)와 유사한 동작을 수행하는 객체입니다.
+history 객체는 window.history와 유사한 동작을 수행하는 객체입니다.
 history 객체를 사용하면 원하는 경로로 이동하거나 이전 페이지로 이동하는 것과 같은 동작을 수행할 수 있습니다.
 window.history와의 차이로는 window.history는 페이지 전체를 새로 reload 하지만
 history 객체는 SPA를 위해 페이지 전체를 reload 하지 않고 필요한 부분만 렌더링한다는 차이점이 있습니다.
@@ -338,7 +340,7 @@ history 객체를 생성할 수 있습니다. 이후 Router 컴포넌트에 생�
 ### redux-thunk 라우팅
 
 redux-thunk에서는 redux-thunk의 `.withExtraArgument()` 메소드를 통해 생성된
-history 객체를 전달할 수 있습니다.
+1history 객체를 전달할 수 있습니다.
 `.withExtraArgument()` 메소드를 사용하면 액션 함수를 선언할 때 3번째 인자로 전달받은 history 객체를
 사용할 수 있습니다.
 
