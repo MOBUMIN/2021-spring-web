@@ -256,8 +256,8 @@ function* fetchDataSaga(action) {
 }
 
 export default function* watchFetchDataSaga() {
-  // 1) FETCH_REQUESTED 리듀서 동작 수행 이후 fetchData 함수 실행 (state)
-  yield takeEvery("FETCH_REQUESTED", fetchData);
+  // 1) FETCH_REQUESTED 리듀서 동작 수행 이후 fetchDataSaga 함수 실행 (state)
+  yield takeEvery("FETCH_REQUESTED", fetchDataSaga);
 }
 
 // 사용 시
