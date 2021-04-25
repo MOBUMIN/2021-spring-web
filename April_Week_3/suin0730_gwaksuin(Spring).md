@@ -19,7 +19,8 @@
 ### 6.1. IndexController
 
 저는 4절에서 언급했던 mustache를 사용해 화면을 구성하는 연습을 했습니다.
-mustache 파일들의 기본 위치는 src/main/resources/templates로 설정해 IndexController.java의 url mapping을 도울 것입니다.
+mustache 파일들의 기본 위치는 src/main/resources/templates로 설정해
+ IndexController.java의 url mapping을 도울 것입니다.
 아래 코드에서는 "index"라는 문자열을 반환하므로 src/main/resources/template/index.mustache로 전환됩니다.
 
 ```java
@@ -96,15 +97,18 @@ CDN을 사용하는 코드는 다음과 같습니다.
                 <form>
                     <div class="form-group">
                         <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+                        <input type="text" class="form-control"
+                        id="title" placeholder="제목을 입력하세요">
                     </div>
                     <div class="form-group">
                         <label for="author"> 작성자 </label>
-                        <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">
+                        <input type="text" class="form-control"
+                        id="author" placeholder="작성자 입력">
                     </div>
                     <div class="form-group">
                         <label for="content"> 내용 </label>
-                        <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+                        <textarea class="form-control"
+                        id="content" placeholder="내용 입력"></textarea>
                     </div>
                 </form>
                 <a href="/" role="button" class="btn btn-secondary">취소</a>
@@ -115,7 +119,10 @@ CDN을 사용하는 코드는 다음과 같습니다.
         {{>layout/footer}}
     ```
 
-4. 게시글 등록 버튼이 동작할 수 있도록 index.js를 생성합니다. 경로는 src/main/resources/static/js/app 입니다. var main 속성 안에 function을 추가함으로써 브라우저의 scope가 겹치는 문제, 여러 사람이 작성한 코드에서 함수 이름이 중복되는 문제를 미연에 방지할 수 있습니다.
+4. 게시글 등록 버튼이 동작할 수 있도록 index.js를 생성합니다.
+경로는 src/main/resources/static/js/app 입니다.
+var main 속성 안에 function을 추가함으로써 브라우저의 scope가 겹치는 문제,
+ 여러 사람이 작성한 코드에서 함수 이름이 중복되는 문제를 미연에 방지할 수 있습니다.
 
     ```javascript
         var main = {
@@ -150,7 +157,8 @@ CDN을 사용하는 코드는 다음과 같습니다.
     main.init();
     ```
 
-5. footer.js에 index.js를 추가합니다. ~~버전을 지정하지 않으면 캐시 문제로 application을 구동해도 수정된 코드가 반영되지 않는 불상사가 발생할 수 있어요...~~
+5. footer.js에 index.js를 추가합니다.
+~~버전을 지정하지 않으면 캐시 문제로 application을 구동해도 수정된 코드가 반영되지 않는 불상사가 발생할 수 있어요...~~
 
     ```javascript
         <script src="/js/app/index.js?ver=2"></script>
@@ -266,7 +274,8 @@ CDN을 사용하는 코드는 다음과 같습니다.
     ```java
         @Transactional
         public void delete(Long id){
-            Posts posts = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
+            Posts posts = postsRepository.findById(id).orElseThrow(()
+            ->new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
             postsRepository.delete(posts);
         }
     ```
@@ -296,7 +305,9 @@ OAuth 로그인을 사용하면 개발자들은 아래와 같은 기능을 신�
 
 ### 7.1. Spring Security
 
-Spiring Sequrity는 스프링 기반 어플리케이션의 보안을 담당하는 프레임워크입니다. 보안과 관련된 다양한 옵션을 지원하고 java bean 설정만으로도 간단하게 사용할 수 있습니다. 본 섹션에서는 Spring Sequrity가 무엇이고 어떻게 동작하는지 보다도, OAuth에 사용된다는 점만 알고 넘어가려 합니다.
+Spiring Sequrity는 스프링 기반 어플리케이션의 보안을 담당하는 프레임워크입니다.
+보안과 관련된 다양한 옵션을 지원하고 java bean 설정만으로도 간단하게 사용할 수 있습니다.
+본 섹션에서는 Spring Sequrity가 무엇이고 어떻게 동작하는지 보다도, OAuth에 사용된다는 점만 알고 넘어가려 합니다.
 
 ### 7.2. Google Login
 
