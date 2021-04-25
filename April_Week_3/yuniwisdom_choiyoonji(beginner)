@@ -1,0 +1,21 @@
+# 2021-spring-web-beginner-april-week-3
+
+## What I studied
+
+생활코딩 web2-CSS 파트를 공부했다.
+
+CSS의 기본 문법에 style 속성을 이용하는 것과 style 태그를 이용하는 법을 알게 되었다.
+style 태그를 이용할 때 지정해주는 태그를 selector라고 부르고 선언해주는 것을 property, 해당하는 값을 value 라고 부른다.
+글자의 사이즈, 정렬하는 법 등을 알게 되었고 필요한 기능을 원할 때 어떻게 쓰는지 검색을 통해 사용해야한다는 것을 느꼈다.
+
+class와 id를 사용하여 우선순위를 지정할 수 있다. 
+예를 들어 스타일 태그로 기본 색을 지정한 후 class="saw"를 사용하면 들어갔던 곳만 색을 다르게 바꿔줄 수 있다.
+
+boxmodel에 대해 배우며 box의 여백, 크기, 글자와 box 사이 여백 등을 지정할 수 있게 되었다.
+border를 원하는 부분만 보이게 하여 화면을 분할하는 방법을 알게 되었다. 
+
+https://yuniwisdom.github.io/web1/box.html
+
+## What I will study
+CSS 강의를 마저 듣고 배웠던 내용을 바탕으로 원하는 기능을 검색해보며 실습을 하고싶다.
+
