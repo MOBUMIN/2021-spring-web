@@ -5,8 +5,8 @@
 
 `redux-saga`는 액션을 모니터링하다 특정 액션이 발생하면 해당 액션과 매칭되는 동작을 수행하는 미들웨어입니다.
 `redux-thunk`는 비동기 작업을 처리한 후 dispatch로 리듀서에 결과를 전달하는 과정으로 동작하고 `redux-saga`는
-액션이 호출될 때 액션 리스너 역할을 하는 saga 함수에서 비동기 작업을 처리한 뒤 리듀서에 해당 결과를 
-전달해주는 과정으로 이루어집니다. `redux-saga`에서는 액션을 함수 형태로 호출하지 않고 **객체 형태**로만 
+액션이 호출될 때 액션 리스너 역할을 하는 saga 함수에서 비동기 작업을 처리한 뒤 리듀서에 해당 결과를
+전달해주는 과정으로 이루어집니다. `redux-saga`에서는 액션을 함수 형태로 호출하지 않고 **객체 형태**로만
 모든 작업을 수행할 수 있어 훨씬 깔끔하고 독립적인 기능을 가진 코드를 작성할 수 있습니다.
 
 ## 1-1. 제너레이터 문법(ES6)
@@ -58,7 +58,8 @@ function* increaseSaga() {
   yield put(increase()); // 2) 1초 delay 후 increase() 액션 함수 호출
 }
 export function* counterSaga() {
-  yield takeEvery(INCREASE, increaseSaga); // 1) 외부에서 INCREASE 동작을 호출하면 increaseSaga 호출 (리스너 saga)
+  // 1) 외부에서 INCREASE 동작을 호출하면 increaseSaga 호출 (리스너 saga)
+  yield takeEvery(INCREASE, increaseSaga);
 }
 
 const initialState = 0;
@@ -194,7 +195,7 @@ asyncFunction();
 
 ## 2-1. redux-thunk와 redux-saga의 비동기 처리 비교
 
-### redux-thunk
+### redux-thunk 비동기 처리
 
 redux-thunk에서 비동기 처리를 수행하고 이후의 동작을 수행하기 위해서는 액션 함수를 사용하기 위한 dispatch,
 비동기 동작을 처리하기 위해 await/async를 사용합니다.
@@ -203,13 +204,18 @@ redux-thunk에서 비동기 처리를 수행하고 이후의 동작을 수행하
 
 // 액션 함수
 export const fetchData = (url) => async dispatch => {
-  dispatch({ type: "FETCH_REQUESTED" }); // 1) FETCH_REQUESTED 리듀서 동작 수행 (state)
+  // 1) FETCH_REQUESTED 리듀서 동작 수행 (state)
+  dispatch({ type: "FETCH_REQUESTED" });
 
   try {
-    const data = await Api.fetchUser(url); // 2) Api의 fetchUser 함수를 url 인자를 통해 호출 => 유저 정보 fetch
-    dispatch({ type: "FETCH_SUCCEEDED", payload:data }); // 3) FETCH_SUCCEEDED 리듀서 동작 수행 (state)
+    // 2) Api의 fetchUser 함수를 url 인자를 통해 호출 => 유저 정보 fetch
+    const data = await Api.fetchUser(url);
+
+     // 3) FETCH_SUCCEEDED 리듀서 동작 수행 (state)
+    dispatch({ type: "FETCH_SUCCEEDED", payload:data });
   } catch (e) {
-    dispatch({ type: "FETCH_FAILED", payload:error }); // 4) 에러 발생 시 FETCH_FAILED 리듀서 동작 수행 (state)
+    // 4) 에러 발생 시 FETCH_FAILED 리듀서 동작 수행 (state)
+    dispatch({ type: "FETCH_FAILED", payload:error });
   }
 }
 
@@ -224,7 +230,7 @@ useEffect(()=>{
 
 > 데이터를 fetch하기 위해서 fetchData **액션 함수** 호출이 필요하다.
 
-### redux-saga
+### redux-saga 비동기 처리
 
 redux-saga에서 비동기 처리를 수행하고 이후의 동작을 수행하기 위해서는 액션 리스닝을 위한 `takeEvery()` 헬퍼 함수,
 액션을 dispatch하는 `put()` 함수, 비동기 함수 실행을 위해 `call()` 함수와 제너레이터의 yield를 사용합니다.
@@ -240,18 +246,23 @@ function* fetchDataSaga(action) {
     const url = action.payload.url;
 
     try {
-        const data = yield call(Api.fetchUser, url) // 2) Api의 fetchUser 함수를 url 인자를 통해 호출 => 유저 정보 fetch
-        yield put({ type: "FETCH_SUCCEEDED", payload:data }) // 3) FETCH_SUCCEEDED 리듀서 동작 수행 (state)
+        // 2) Api의 fetchUser 함수를 url 인자를 통해 호출 => 유저 정보 fetch
+        const data = yield call(Api.fetchUser, url) 
+
+        // 3) FETCH_SUCCEEDED 리듀서 동작 수행 (state)
+        yield put({ type: "FETCH_SUCCEEDED", payload:data }) 
     } catch (error) {
-        yield put({ type: "FETCH_FAILED", payload:error }) // 4) 에러 발생 시 FETCH_FAILED 리듀서 동작 수행 (state)
+        // 4) 에러 발생 시 FETCH_FAILED 리듀서 동작 수행 (state)
+        yield put({ type: "FETCH_FAILED", payload:error }) 
     }
 }
 
 export default function* watchFetchDataSaga() {
-  yield takeEvery("FETCH_REQUESTED", fetchData); // 1) FETCH_REQUESTED 리듀서 동작 수행 이후 fetchData 함수 실행 (state)
+  // 1) FETCH_REQUESTED 리듀서 동작 수행 이후 fetchData 함수 실행 (state)
+  yield takeEvery("FETCH_REQUESTED", fetchData); 
 }
 
-// 사용 시 
+// 사용 시
 const dispatch = useDispatch();
 
 useEffect(()=>{
@@ -289,6 +300,7 @@ history 객체의 자세한 속성과 메소드는 다음 [자료](https://react
 
 
 &lt;history 객체에서 자주 사용하는 메소드&gt;
+
 - push(path, [state]) : 지정한 경로로 이동
 - go(n) : n 위치로 history 스택에서 포인터 이동
 - goBack() : 뒤로 이동 = go(-1)
@@ -323,10 +335,11 @@ export default HistoryTest;
 두 미들웨어에서 history 객체를 사용하기 위해서는 history 모듈의 `createBrowserHistory()` 함수를 통해
 history 객체를 생성할 수 있습니다. 이후 Router 컴포넌트에 생성된 history 객체를 전달합니다.
 
-### redux-thunk
+### redux-thunk 라우팅
 
-redux-thunk에서는 redux-thunk의 `.withExtraArgument()` 메소드를 통해 생성된 history 객체를 전달할 수 있습니다.
-`.withExtraArgument()` 메소드를 사용하면 액션 함수를 선언할 때 3번째 인자로 전달받은 history 객체를 
+redux-thunk에서는 redux-thunk의 `.withExtraArgument()` 메소드를 통해 생성된
+history 객체를 전달할 수 있습니다.
+`.withExtraArgument()` 메소드를 사용하면 액션 함수를 선언할 때 3번째 인자로 전달받은 history 객체를
 사용할 수 있습니다.
 
 ```JavaScript
@@ -361,7 +374,7 @@ export const goToHome = () => (dispatch, getState, { history }) => {
 
 ```
 
-### redux-saga
+### redux-saga 라우팅
 
 redux-saga에서는 `createSagaMiddleware()` 함수로 생성된 saga 미들웨어에 context를 설정할 수 있습니다.
 context를 통해 history 객체를 전달하면 `getContext()` 함수를 통해 전달받은 history 객체를 사용할 수 있습니다.
@@ -383,7 +396,7 @@ const sagaMiddleware = createSagaMiddleware({
 });
 
 const store = createStore(
-  rootReducer, 
+  rootReducer,
   applyMiddleware(sagaMiddleware)
 );
 sagaMiddleware.run(rootSaga);
@@ -414,6 +427,7 @@ export function* watchGoToHomeSaga() {
 ```
 
 &lt;참고자료&gt;
+
 - [redux-thunk와 redux-saga에 대하여](https://react.vlpt.us/redux-middleware/10-redux-saga.html)
 - [Redux-saga에 대하여](https://medium.com/@han7096/redux-saga%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-5e39b72380af)
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
