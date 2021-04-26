@@ -7,4 +7,4 @@
   -  [학습한 내용](https://gganada.github.io/JH_WebStudy/)
 
 ##앞으로 학습할 내용
-- 생활코딩을 보며 JS를 학습할 것이다
+ - 생활코딩을 보며 JS를 학습할 것이다
