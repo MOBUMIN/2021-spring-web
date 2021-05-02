@@ -32,7 +32,8 @@ container 자체가 inline이 되느냐, 아니냐의 차이.
 
 - 주 축 방향
 
-justify-content: flex-start / flex-end / center / space-between(사이의 간격) / space-around(둘레의 간격) / space-evenly(사이, 둘레 간격)(IE, Edge X)
+justify-content: flex-start / flex-end / center / space-between(사이의 간격) /
+space-around(둘레의 간격) / space-evenly(사이, 둘레 간격)(IE, Edge X)
 
 - 수직 축 방향
 
@@ -40,7 +41,8 @@ justify-content: flex-start / flex-end / center / space-between(사이의 간격
 
 - 수직 축 방향(wrap 설정 상태에서 여러 줄 나왔을 때)
 
-align-content: flex-start / flex-end / center / stretch / space-between / space-around / space-evenly
+align-content: flex-start / flex-end / center / stretch /
+space-between / space-around / space-evenly
 
 ## 내가 매번 검색하는 부분
 
