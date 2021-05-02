@@ -372,7 +372,7 @@ spring.security.oauth2.client.registration.google.scope = profile, email
 
 2. 각 사용자의 권한을 관리할 Enum 클래스 Role.java을 생성합니다.
 
-    '''java
+    ```java
         @Getter
         @RequiredArgsConstructor
         public enum Role {
@@ -381,7 +381,7 @@ spring.security.oauth2.client.registration.google.scope = profile, email
             private final String key;
             private final String title;
         }
-    '''
+    ```
 
 3. USER의 CRUD를 다루기 위해 UserRepository.java를 생성합니다.
 
