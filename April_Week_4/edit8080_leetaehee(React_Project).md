@@ -186,7 +186,8 @@ Github에서는 gh-pages 브랜치를 통한 정적 웹 호스팅 기능을 지�
 4. 배포하기
 
 위 과정을 통해 작성한 코드가 정상적으로 배포된 것을 확인할 수 있었습니다.
-http://kids-keeper.s3-website.ap-northeast-2.amazonaws.com/
+
+[배포 확인하기](http://kids-keeper.s3-website.ap-northeast-2.amazonaws.com/)
 
 &lt;참고자료&gt;
 
