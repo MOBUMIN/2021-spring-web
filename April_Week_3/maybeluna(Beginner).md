@@ -59,10 +59,10 @@ HTML의 가장 핵심 문법 **TAG**
 ```
 
 ### 위 기능을 모두 사용한 간단한 웹페이지 결과
-![web1](C:\Users\com\Desktop\web\캡처.PNG)
-![web2](C:\Users\com\Desktop\web\캡처2.PNG)
-![web3](C:\Users\com\Desktop\web\캡처3.PNG)
-![web4](C:\Users\com\Desktop\web\캡처4.PNG)
+![캡처2](https://user-images.githubusercontent.com/72259053/116818057-5f7dd380-aba4-11eb-9de7-17e862a9056a.PNG)
+![캡처3](https://user-images.githubusercontent.com/72259053/116818060-61479700-aba4-11eb-8600-f0c6cc99bd27.PNG)
+![캡처4](https://user-images.githubusercontent.com/72259053/116818061-61479700-aba4-11eb-9fd8-0edf7fb35348.PNG)
+![캡처](https://user-images.githubusercontent.com/72259053/116818062-61e02d80-aba4-11eb-963d-78049190bbf9.PNG)
   
 느낀점😊  
 -> 뼈대부터 차근차근 배워서 기분이 좋고 결과가 바로 보여서 더욱 재미있다. 뒤늦게 참여하고 하필 시험기간이라 많이는 못했지만 앞으로 열심히 해야겠다.
