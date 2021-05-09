@@ -39,7 +39,7 @@
 2. reposityro name, public, initialize this repsository with a README 설정
 3. create repsitory
 4. files upload
-5. seggings
+5. settings
 6. GitHub Pages에서 Source 부분에서 master branch(or main)로 변경 후 주소 탄생  
 
 [나의 Web Hosting](https://maybeluna.github.io/web1/)  
