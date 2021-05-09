@@ -45,8 +45,10 @@
 
 ### 6. CSS 선택자를 스스로 알아내기
 
-- class 선택자: 특정 태그에 대해서 html의 속성을 주는 것인데 구분은 띄어쓰기로 함 (선택자 앞에 `.`이 붙인 경우 class를 가리킴)  
-- id 선택자: 고유의 태그에 대해서 html의 속성을 주는 것으로 중복이 되지 않음 (선택자 앞에 `#`이 붙은 경우 id를 가리킴)
+- class 선택자: 특정 태그에 대해서 html의 속성을 주는 것인데 구분은 띄어쓰기로 함  
+- 선택자 앞에 `.`이 붙인 경우 class를 가리킴  
+- id 선택자: 고유의 태그에 대해서 html의 속성을 주는 것으로 중복이 되지 않음  
+- 선택자 앞에 `#`이 붙은 경우 id를 가리킴  
 
 선택자 우선순위  
 id(구체적) > Class > Tag(포괄적)  
@@ -90,7 +92,9 @@ id(구체적) > Class > Tag(포괄적)
 </html>
 ```
 
-> 속성과 선택자 개념을 알게 되었고 이를 활용할 수 있도록 검색하는 방법을 배웠다. 특히 선택자의 경우 빠르게 웹페이지의 이미지를 바꿀 수 있다는 점에서 효율적으로 보였습니다. 아직 익숙치 않아 계속 쓰면서 익숙해져야겠습니다.  
+> 속성과 선택자 개념을 알게 되었고 이를 활용할 수 있도록 검색하는 방법을 배웠다.  
+특히 선택자의 경우 빠르게 웹페이지의 이미지를 바꿀 수 있다는 점에서 효율적으로 보였습니다.  
+아직 익숙치 않아 계속 쓰면서 익숙해져야겠습니다.  
 
 ## WEB02(CSS)-210504
 
@@ -140,8 +144,9 @@ id(구체적) > Class > Tag(포괄적)
   </head>
   <body>
     <h1>COOKIE RUN</h1>
-    새롭게 경험하는 쿠키들의 세계! 
-    마녀의 오븐을 탈출한 쿠키들이 드디어 새로운 <a href="https://www.cookierun-kingdom.com/ko/">쿠키들의 왕국</a>을 건설합니다!
+    새롭게 경험하는 쿠키들의 세계!
+    마녀의 오븐을 탈출한 쿠키들이 드디어
+    새로운 <a href="https://www.cookierun-kingdom.com/ko/">쿠키들의 왕국</a>을 건설합니다!
     개성 있는 다양한 쿠키들과 함께 나만의 쿠키 왕국을 건설하고, 즐거운 순간을 함께 경험해보세요.
     미지의 쿠키 세계를 탐험하고 적들과 전투를 벌이며 왕국의 영향력을 넓혀보세요. 
     왕국에 축제가 열리면 친구들이 찾아와요! 친구들과 함께 공동의 미션을 수행해보세요. 
@@ -241,9 +246,10 @@ id(구체적) > Class > Tag(포괄적)
 ```
 
 그리드를 사용하면 자동적으로 한 칼럼의 크기가 커지면 연결된 칼럼 역시 크기가 커지는 장점이 있다!  
-[현재 웹브라우저가 채택하고 있는 기술 통계](https://caiuse.com)를 통해 기술을 활용하는 지 통계를 통해 알 수 있고 그것을 기반으로 공부할 수 있다
+[현재 웹브라우저가 채택하고 있는 기술 통계](https://caiuse.com)를 기반으로 공부할 수 있다
 
-css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하기 위해서 `#grid ul` 이렇게 grid id에 있는 ul 태그라고 명시하는 것이 좋다
+css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하기 위해서  
+`#grid ul` 이렇게 grid id에 있는 ul 태그라고 명시하는 것이 좋다  
 
 ```html
 <!doctype html>
@@ -291,23 +297,45 @@ css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하
           The ultimate iPad experience. Now with breakthrough M1 performance,
           a breathtaking XDR display, and blazing‑fast 5G wireless.
           With M1, iPad Pro is the fastest device of its kind.
-          It’s designed to take full advantage of next‑level performance and custom technologies like the advanced image signal processor and unified memory architecture of M1.
-          And with the incredible power efficiency of M1, iPad Pro is still thin and light with all‑day battery life,
-          making it as portable as it is powerful. The 8‑core CPU of M1 delivers up to 50 percent faster performance.
-          And M1 has an 8‑core GPU in a class of its own, providing up to 40 percent faster graphics performance to iPad Pro.
-          So you can build intricate AR models, play games with console‑quality graphics at high frame rates, and more.
-          The Liquid Retina XDR display delivers true-to-life detail with a 1,000,000:1 contrast ratio,
-          great for viewing and editing HDR photos and videos or enjoying your favorite movies and TV shows.
-          It also features a breathtaking 1000 nits of full‑screen brightness and 1600 nits of peak brightness.
+          It’s designed to take full advantage of next‑level performance 
+          and custom technologies like the advanced image signal processor 
+          and unified memory architecture of M1.
+          And with the incredible power efficiency of M1, 
+          iPad Pro is still thin and light with all‑day battery life,
+          making it as portable as it is powerful. 
+          The 8‑core CPU of M1 delivers up to 50 percent faster performance.
+          And M1 has an 8‑core GPU in a class of its own, 
+          providing up to 40 percent faster graphics performance to iPad Pro.
+          So you can build intricate AR models, 
+          play games with console‑quality graphics at high frame rates, and more.
+          The Liquid Retina XDR display delivers true-to-life detail 
+          with a 1,000,000:1 contrast ratio,
+          great for viewing and editing HDR photos and videos 
+          or enjoying your favorite movies and TV shows.
+          It also features a breathtaking 1000 nits of full‑screen brightness 
+          and 1600 nits of peak brightness.
           And advanced display technologies like P3 wide color, True Tone, and ProMotion.
           Over 10,000 mini‑LEDs are grouped into more than 2500 local dimming zones.
-          Depending on the content, the brightness in each zone can be precisely adjusted to achieve an astonishing 1,000,000:1 contrast ratio.
-          Even the most detailed HDR content with the finest specular highlights — like galaxies and action movie explosions — are more true to life than ever.
-          The Liquid Retina display on the 11‑inch iPad Pro is not only gorgeous and portable, it also features incredibly advanced technologies.
-          Like ProMotion, True Tone, P3 wide color, and ultralow reflectivity, which make everything feel responsive and look stunning.
-          iPad has always been uniquely portable with superfast Wi‑Fi and cellular options.
-          Now with 5G capabilities, you can connect to the fastest wireless networks when you need to download files, stream movies, collaborate with colleagues, and upload content on the go.
-          And iPad Pro has the most 5G bands of any device of its kind — so it can get 5G in more places.
+          Depending on the content, 
+          the brightness in each zone can be precisely adjusted 
+          to achieve an astonishing 1,000,000:1 contrast ratio.
+          Even the most detailed HDR content 
+          with the finest specular highlights 
+          — like galaxies and action movie explosions 
+          — are more true to life than ever.
+          The Liquid Retina display on the 11‑inch iPad Pro is 
+          not only gorgeous and portable, 
+          it also features incredibly advanced technologies.
+          Like ProMotion, True Tone, P3 wide color, and ultralow reflectivity, 
+          which make everything feel responsive and look stunning.
+          iPad has always been uniquely portable 
+          with superfast Wi‑Fi and cellular options.
+          Now with 5G capabilities, you can connect 
+          to the fastest wireless networks 
+          when you need to download files, stream movies, 
+          collaborate with colleagues, and upload content on the go.
+          And iPad Pro has the most 5G bands of any device of its kind 
+          — so it can get 5G in more places.
         </p>
       </div>
   </div>
@@ -315,14 +343,24 @@ css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하
 </html>
 ```
 
-> 박스모델과 그리드를 이용해서 웹페이지 레이아웃을 적용하는 방법을 학습했습니다. 처음에 그리드를 접하기 전에 칼럼 나누는 방법을 잠깐 찾아봤습니다. css에 적용하는 모델과 html에 적용할 수 있는 모델 두 가지를 보았는데 (관련사이트: [웹 칼럼 레이아웃](https://www.w3schools.com/howto/howto_css_two_columns.asp)) 둘 다 중복이 많은 것을 보았습니다. 그런데 그리드를 이용하면 쉽고 간편하게 레이아웃을 적용할 수 있어서 좋았습니다. 또한 #grid ul{padding-left: 30px} 이 부분에서 위에 ul 태그에 있는 것을 모두 집어 넣었는데 padding-left가 작동하지 않았습니다. 한 태그에 유사한 태그가 들어가도 위에 padding 먼저하고 다음 padding-left를 적용할 줄 알았는데 그게 아니었고 한 태그에는 유사한 태그가 하나만 들어가야 한다는 것을 깨달았습니다.
+> 박스모델과 그리드를 이용해서 웹페이지 레이아웃을 적용하는 방법을 학습했습니다.  
+처음에 그리드를 접하기 전에 칼럼 나누는 방법을 잠깐 찾아봤습니다.  
+css에 적용하는 모델과 html에 적용할 수 있는 모델 두 가지를 보았는데  
+[웹 칼럼 레이아웃](https://www.w3schools.com/howto/howto_css_two_columns.asp)  
+둘 다 중복이 많은 것을 보았습니다.  
+그런데 그리드를 이용하면 쉽고 간편하게 레이아웃을 적용할 수 있어서 좋았습니다.  
+또한 #grid ul{padding-left: 30px} 이 부분에서 위에 ul 태그에 있는 것을 모두 집어 넣었는데  
+padding-left가 작동하지 않았습니다.  
+한 태그에 유사한 태그가 들어가도 위에 padding 먼저하고 다음 padding-left를 적용할 줄 알았는데  
+그게 아니었고 한 태그에는 유사한 태그가 하나만 들어가야 한다는 것을 깨달았습니다.
 
 ## WEB02(CSS)-210506
 
 ### 8. 반응형 디자인
 
 웹은 수많은 형태에 적용할 수 있도록 만들어야 함  
-위의 이유로 **반응형 디자인**이 탄생하였는데 반응형 디자인이란 화면의 크기에 따라 웹페이지의 요소들이 반응해서 작동된다 -> 미디어 쿼리로 구현  
+위의 이유로 **반응형 디자인**이 탄생하였는데  
+반응형 디자인이란 화면의 크기에 따라 웹페이지의 요소들이 반응해서 작동된다 -> 미디어 쿼리로 구현  
 화면 크기는 구글 개발자 툴(검사)을 이용하면 알 수 있음  
 
 #### 미디어쿼리
@@ -417,23 +455,45 @@ css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하
           The ultimate iPad experience. Now with breakthrough M1 performance,
           a breathtaking XDR display, and blazing‑fast 5G wireless.
           With M1, iPad Pro is the fastest device of its kind.
-          It’s designed to take full advantage of next‑level performance and custom technologies like the advanced image signal processor and unified memory architecture of M1.
-          And with the incredible power efficiency of M1, iPad Pro is still thin and light with all‑day battery life,
-          making it as portable as it is powerful. The 8‑core CPU of M1 delivers up to 50 percent faster performance.
-          And M1 has an 8‑core GPU in a class of its own, providing up to 40 percent faster graphics performance to iPad Pro.
-          So you can build intricate AR models, play games with console‑quality graphics at high frame rates, and more.
-          The Liquid Retina XDR display delivers true-to-life detail with a 1,000,000:1 contrast ratio,
-          great for viewing and editing HDR photos and videos or enjoying your favorite movies and TV shows.
-          It also features a breathtaking 1000 nits of full‑screen brightness and 1600 nits of peak brightness.
+          It’s designed to take full advantage of next‑level performance 
+          and custom technologies like the advanced image signal processor 
+          and unified memory architecture of M1.
+          And with the incredible power efficiency of M1, 
+          iPad Pro is still thin and light with all‑day battery life,
+          making it as portable as it is powerful. 
+          The 8‑core CPU of M1 delivers up to 50 percent faster performance.
+          And M1 has an 8‑core GPU in a class of its own, 
+          providing up to 40 percent faster graphics performance to iPad Pro.
+          So you can build intricate AR models, play games 
+          with console‑quality graphics at high frame rates, and more.
+          The Liquid Retina XDR display delivers true-to-life detail 
+          with a 1,000,000:1 contrast ratio,
+          great for viewing and editing HDR photos and videos 
+          or enjoying your favorite movies and TV shows.
+          It also features a breathtaking 1000 nits of full‑screen brightness 
+          and 1600 nits of peak brightness.
           And advanced display technologies like P3 wide color, True Tone, and ProMotion.
           Over 10,000 mini‑LEDs are grouped into more than 2500 local dimming zones.
-          Depending on the content, the brightness in each zone can be precisely adjusted to achieve an astonishing 1,000,000:1 contrast ratio.
-          Even the most detailed HDR content with the finest specular highlights — like galaxies and action movie explosions — are more true to life than ever.
-          The Liquid Retina display on the 11‑inch iPad Pro is not only gorgeous and portable, it also features incredibly advanced technologies.
-          Like ProMotion, True Tone, P3 wide color, and ultralow reflectivity, which make everything feel responsive and look stunning.
-          iPad has always been uniquely portable with superfast Wi‑Fi and cellular options.
-          Now with 5G capabilities, you can connect to the fastest wireless networks when you need to download files, stream movies, collaborate with colleagues, and upload content on the go.
-          And iPad Pro has the most 5G bands of any device of its kind — so it can get 5G in more places.
+          Depending on the content, 
+          the brightness in each zone can be precisely adjusted 
+          to achieve an astonishing 1,000,000:1 contrast ratio.
+          Even the most detailed HDR content 
+          with the finest specular highlights 
+          — like galaxies and action movie explosions 
+          — are more true to life than ever.
+          The Liquid Retina display 
+          on the 11‑inch iPad Pro is not only gorgeous and portable, 
+          it also features incredibly advanced technologies.
+          Like ProMotion, True Tone, P3 wide color, and ultralow reflectivity, 
+          which make everything feel responsive and look stunning.
+          iPad has always been uniquely portable 
+          with superfast Wi‑Fi and cellular options.
+          Now with 5G capabilities, 
+          you can connect to the fastest wireless networks 
+          when you need to download files, stream movies, 
+          collaborate with colleagues, and upload content on the go.
+          And iPad Pro has the most 5G bands of any device of its kind 
+          — so it can get 5G in more places.
         </p>
       </div>
   </div>
@@ -441,7 +501,12 @@ css에서 `ol`, `ul` 이런 태그를 사용하기 보다 명확하게 표시하
 </html>
 ```
 
-> 실제 적용했을 때 작동이 안되는 부분이 좀 있었지만 웹 페이지를 껐다가 키니까 됐다. 잠깐의 오류였던 것으로 보인다. 그리고 추천해주신 AWS S3 정적호스팅을 해보려고 추천 사이트에 들어갔는데 처음 CRP라는 용어부터 낯설어서 보류해두기로 했다. 일단 유튜브에 있는 AWS 웹 호스팅 영상을 시청한 후에 한번 더 봐야겠다. 그 전까지는 깃으로 웹 호스팅을 해야지..
+> 실제 적용했을 때 작동이 안되는 부분이 좀 있었지만 웹 페이지를 껐다가 키니까 됐다.  
+잠깐의 오류였던 것으로 보인다.  
+그리고 추천해주신 AWS S3 정적호스팅을 해보려고 추천 사이트에 들어갔는데  
+처음 CRP라는 용어부터 낯설어서 보류해두기로 했다.  
+일단 유튜브에 있는 AWS 웹 호스팅 영상을 시청한 후에 한번 더 봐야겠다.  
+그 전까지는 깃으로 웹 호스팅을 해야지..
 
 ## WEB02(CSS)-210507
 
@@ -464,7 +529,9 @@ style을 바꿀 때 웹페이지가 몇 개 없다면 쉽게 바꿀 수 있지�
 
 [적용 Web page](https://maybeluna.github.io/web2/index.html)
 
-> 예전에 폰에서 용량을 차지하는 캐시를 자주 삭제했는데, 무슨 파일인지도 모르고 일단 용량을 줄여준다고 해서 삭제했다. 그리고 왜 필요도 없는 cash가 쌓이는 지 불만이 많았는데 이번 공부를 통해 cash의 쓰임새를 알게 되어서 좋았다!
+> 예전에 폰에서 용량을 차지하는 캐시를 자주 삭제했는데,  
+무슨 파일인지도 모르고 일단 용량을 줄여준다고 해서 삭제했다.  
+그리고 왜 필요도 없는 cash가 쌓이는 지 불만이 많았는데 이번 공부를 통해 cash의 쓰임새를 알게 되어서 좋았다!
 
 느낀점😊  
--> css를 다 마무리했는데 과제 때문에 많이 하지 못해 아쉽다. 비록 웹페이지 하나밖에 만들지 않았지만 계속 html과 css를 활용해서 다른 페이지를 만들어보고 싶다!  
+-> css를 다 마무리했는데 과제 때문에 많이 하지 못해 아쉽다. 계속해서 html과 css를 활용해서 다른 페이지를 만들어보고 싶다!  

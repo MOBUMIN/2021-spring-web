@@ -37,11 +37,12 @@ Application, Program, Web page, Web site -> 결과
 ### 정확한 HTML 사용이 중요한 이유  
 
 - 검색 엔진이 HTML 기반으로 운영되기 때문에 정확한 HTML 문법을 쓸수록 상위에 노출되기 때문에 비즈니스 측면에서 중요하다.
-- HTML은 공공도메인이기 때문에 접근성이 무엇보다 좋다. 이때 정확한 문법을 구사해야지 장애가 있는 분들이나 그외에 불편한 점이 있는 사람들이 쉽게 접근할 수 있기 때문에 휴머니즘 측면에서도 중요하다.
+- HTML은 공공도메인이기 때문에 접근성이 무엇보다 좋아서 정확한 문법을 구사해야지 휴머니즘 측면에서도 중요하다.
   
 ```html
 # 이미지
-<img src=https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1043&q=80 width="100%">
+<img src=https://www.foodbank.co.kr/news/photo/201505/43486_634_5612.jpg width="100%">
+
 
 # 부모 자식 태그의 대표 리스트
 <ol><li></li></ol> # ordered list
@@ -59,6 +60,7 @@ Application, Program, Web page, Web site -> 결과
 <html></html> # html 전체 부분
 
 # 웹페이지의 핵심 기능 링크
+
 <a href="https://www.apple.com/kr/"></a>
 <a href="https://www.apple.com/kr/" target="_blank"></a> # 새 탭 이동
 <a href="https://www.apple.com/kr/" title=""></a> # 탭 이동 전 설명
